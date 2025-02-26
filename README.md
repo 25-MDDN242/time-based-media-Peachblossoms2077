@@ -6,4 +6,18 @@
 
 Update this file as you go along to record your progress.
 
-first day commit 
+First Day Commit 25/02
+
+I'm very not confident in my ability to do P5 as I was really struggling next year. I was spending a lot of time thinking about a design that is both functional, unique and somewhat straightforward to create in P5. 
+
+I read through some of the articles and designs on the Nuku modules and some of them are really interesting, I wonder if I could maybe replicate or create a variations of one of those designs on P5. 
+
+I looked through some of the video games I play that has a night and day system and consequently, a clock system. Most of them have unique designs to tell not only the time, but also phases and special periods within the game, if possible I would also like to incorporate this within my clock.
+
+I've also tried looking at my design a little differently and try to see it as a time of day or time period visualizer instead of a just merely telling a number.
+
+For the in-class discussion sketch, I ignored all my worries about my capabilities in P5 and just tried something that was on my mind. The sketch is very much inspired by the default lockscreen wallpapers of modern Apple Iphones. Will check with Pheobe to see if it's the right direction, if if it's even possible for me :/
+
+Sketch Updated Commit 26/02
+
+
