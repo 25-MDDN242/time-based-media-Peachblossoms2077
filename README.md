@@ -20,4 +20,6 @@ For the in-class discussion sketch, I ignored all my worries about my capabiliti
 
 Sketch Updated Commit 26/02
 
+Non-operating Maeda Clock (In-class) Commit 27/02
+
 

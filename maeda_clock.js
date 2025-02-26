@@ -1,73 +1,78 @@
 // Update this function to draw you own maeda clock on a 960x500 canvas
 function draw_clock(obj) {
   // YOUR MAIN CLOCK CODE GOES HERE
-// This is the pendulum clock
-var clock01 = function(sketch) {
-  sketch.setup = function() {
+  background(0); //  beige
+  fill(200); // dark grey
+  var circlex = 0;
+  var circley = -60;
+
+  function firstdigit() {
+    circle(300 + circlex, 230 + circley, 15);
+    circle(300 + circlex, 250 + circley, 15);
+    circle(300 + circlex, 270 + circley, 15);
+    circle(300 + circlex, 290 + circley, 15);
+    circle(300 + circlex, 310 + circley, 15);
+    circle(300 + circlex, 330 + circley, 15);
+    circle(300 + circlex, 350 + circley, 15);
+    circle(300 + circlex, 370 + circley, 15);
+    circle(300 + circlex, 390 + circley, 15);
+    circle(280 + circlex, 250 + circley, 15);
+    circle(260 + circlex, 270 + circley, 15);
+    circle(240 + circlex, 290 + circley, 15);
+    circle(220 + circlex, 310 + circley, 15);
+    circle(220 + circlex, 330 + circley, 15);
+    circle(240 + circlex, 330 + circley, 15);
+    circle(260 + circlex, 330 + circley, 15);
+    circle(280 + circlex, 330 + circley, 15);
+    circle(320 + circlex, 330 + circley, 15);
+  }
+
+  function colon() {
+    circle(390 + circlex, 270 + circley, 15);
+    circle(390 + circlex, 350 + circley, 15);
+  }
+
+  function seconddigit() {
+    circle(550 + circlex, 230 + circley, 15);
+    circle(550 + circlex, 250 + circley, 15);
+    circle(550 + circlex, 270 + circley, 15);
+    circle(550 + circlex, 290 + circley, 15);
+    circle(550 + circlex, 310 + circley, 15);
+    circle(550 + circlex, 330 + circley, 15);
+    circle(550 + circlex, 350 + circley, 15);
+    circle(550 + circlex, 370 + circley, 15);
+    circle(550 + circlex, 390 + circley, 15);
+    circle(530 + circlex, 250 + circley, 15);
+    circle(510 + circlex, 270 + circley, 15);
+    circle(490 + circlex, 290 + circley, 15);
+    circle(470 + circlex, 310 + circley, 15);
+    circle(470 + circlex, 330 + circley, 15);
+    circle(490 + circlex, 330 + circley, 15);
+    circle(510 + circlex, 330 + circley, 15);
+    circle(530 + circlex, 330 + circley, 15);
+    circle(570 + circlex, 330 + circley, 15);
+  }
+
+  function thirddigit() {
+    circle(650 + circlex, 230 + circley, 15);
+    circle(670 + circlex, 230 + circley, 15);
+    circle(690 + circlex, 230 + circley, 15);
+    circle(710 + circlex, 230 + circley, 15);
+    circle(730 + circlex, 230 + circley, 15);
+    circle(730 + circlex, 250 + circley, 15);
+    circle(730 + circlex, 270 + circley, 15);
+    circle(730 + circlex, 290 + circley, 15);
+    circle(710 + circlex, 310 + circley, 15);
+    circle(690 + circlex, 330 + circley, 15);
+    circle(690 + circlex, 350 + circley, 15);
+    circle(690 + circlex, 370 + circley, 15);
+    circle(690 + circlex, 390 + circley, 15);
 
   }
 
-  sketch.draw = function() {
-    sketch.background(0);
+  firstdigit();
+  colon();
+  seconddigit();
+  thirddigit();
 
-    let angle = sketch.map(sketch.millis() % 2000, 0, 2000, 0, sketch.PI * 2);
-
-    sketch.translate(sketch.width/2, 0);
-
-    sketch.push();
-    {
-      sketch.rotate(sketch.sin(angle) * 0.5);
-      sketch.translate(0, sketch.height - 50);
-
-      sketch.fill(255);
-      drawClock(sketch.hour(), sketch.minute());
-    }
-    sketch.pop();
-
-    sketch.push();
-    {
-      sketch.rotate(-sketch.sin(angle) * 0.5);
-      sketch.translate(0, sketch.height - 50);
-
-      sketch.fill(128);
-      drawPeriod(sketch.hour());
-    }
-    sketch.pop();
-  }
-
-  function drawClock(hour, minute) {
-    hour %= 12;
-    if (hour == 0) {
-      hour = 12;
-    }
-
-    if (hour >= 10) {
-      drawCharacter(sketch.floor(hour / 10), -60, 0);
-    }
-    drawCharacter(hour % 10, -30, 0);
-
-    drawCharacter(':', 0, 0);
-
-    drawCharacter(sketch.floor(minute / 10), 30, 0);
-    drawCharacter(minute % 10, 60, 0);
-  }
-
-  function drawPeriod(hour) {
-    if (hour < 12) {
-      drawCharacter('A', -15, 0);
-    } else {
-      drawCharacter('P', -15, 0);
-    }
-    drawCharacter('M', 15, 0);
-  }
-
-  function drawCharacter(character, x, y) {
-    let dots = font[character];
-    for (let row = 0; row < dots.length; row++) {
-      for (let col = 0; col < dots[row].length; col++) {
-        if (dots[row][col] === 1)
-          sketch.ellipse(x + 5 * col - 10, y + 5 * row - 15, 5, 5);
-      }
-    }
-  }
 }
