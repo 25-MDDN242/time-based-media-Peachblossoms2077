@@ -2,9 +2,7 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=18378491&assignment_repo_type=AssignmentRepo)
 ## MDDN 242 Project 1: Time-based Media  
 
-### THIS IS YOUR README
-
-Update this file as you go along to record your progress.
+### README
 
 First Day Commit 25/02
 
@@ -18,8 +16,19 @@ I've also tried looking at my design a little differently and try to see it as a
 
 For the in-class discussion sketch, I ignored all my worries about my capabilities in P5 and just tried something that was on my mind. The sketch is very much inspired by the default lockscreen wallpapers of modern Apple Iphones. Will check with Pheobe to see if it's the right direction, if if it's even possible for me :/
 
+
+
 Sketch Updated Commit 26/02
 
+
+
 Non-operating Maeda Clock (In-class) Commit 27/02
+
+
+
+Working (Simplified) Maeda Clock Commit 27/02
+
+I decided to do the digital clock made up of clock face one, #8. Instead of clockfaces though, it just has white circles but hey, it works. The exercise is good practice for my future projects and assignments. Thanks Phoebe.
+
 
 
