@@ -26,9 +26,9 @@ Non-operating Maeda Clock (In-class) Commit 27/02
 
 
 
-Working (Simplified) Maeda Clock Commit 27/02
+Working (Simplified) Maeda Clock Commit 28/02
 
-I decided to do the digital clock made up of clock face one, #8. Instead of clockfaces though, it just has white circles but hey, it works. The exercise is good practice for my future projects and assignments. Thanks Phoebe.
+I decided to do the digital clock made up of clockfaces one, #8. Instead of clockfaces though, it just has white circles but hey, it works. The exercise was good practice for my future projects and assignments. Thanks Phoebe.
 
 
 

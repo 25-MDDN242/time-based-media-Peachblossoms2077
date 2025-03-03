@@ -27,7 +27,7 @@ function draw_clock(obj) {
     circle(220 + clockx + locx, 290 + clocky + locy, 15);
     circle(300 + clockx + locx, 350 + clocky + locy, 15);
     circle(220 + clockx + locx, 350 + clocky + locy, 15);
-    }
+  }
 
   function digit1(locx, locy) {
     circle(300 + clockx + locx, 230 + clocky + locy, 15);
@@ -209,6 +209,10 @@ function draw_clock(obj) {
 
 // switches render the time in the correct format
 switch (obj.hours) {
+  case 0:
+    digit0(-160,0);
+    digit0(0,0);
+    break;
   case 1:
     digit0(0,0);
     digit1(-160,0);
@@ -304,6 +308,10 @@ switch (obj.hours) {
 }
 
 switch (obj.minutes) {
+  case 0:
+    digit0(260,0);
+    digit0(420,0);
+    break;
   case 1:
     digit0(260,0);
     digit1(420,0);
