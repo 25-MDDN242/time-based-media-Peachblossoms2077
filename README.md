@@ -31,4 +31,11 @@ Working (Simplified) Maeda Clock Commit 28/02
 I decided to do the digital clock made up of clockfaces one, #8. Instead of clockfaces though, it just has white circles but hey, it works. The exercise was good practice for my future projects and assignments. Thanks Phoebe.
 
 
+In-class Commit 04/03
+
+I didn't get to do much, my project is kinda heavily image-based so I just started work on the day and night cycle of the clock. I tried to implement (steal code) a color gradient into the sky for a more natural look but this is strangely complicated once I tried to connect to color changes to obj.hours. Very confused.
+
+I'll try to do more at home.
+
+
 
