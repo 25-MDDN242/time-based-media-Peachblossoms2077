@@ -71,9 +71,9 @@ function draw_clock(obj) {
   nightColour2 = color(0, 42, 92); // bottom color during night
 
 
-  dayColor1 = color(166, 229, 245);
-  dayColor2 = color(220, 246, 252);
-  let dawnint = 0;
+  dayColor1 = color(166, 229, 245); // top color during day
+  dayColor2 = color(220, 246, 252); // bottom color during day
+  let dawnint = 0; // dawnint/duskint values are for background gradient
   let duskint = 0;
 
   if (obj.hours > 7 && obj.hours < 17) { // if daytime (7am to 5pm) then
@@ -82,13 +82,13 @@ function draw_clock(obj) {
   else if (obj.hours < 5 || obj.hours > 19) { //if nighttime(7pm to 5am) then 
     setGradient(nightColour1, nightColour2);
   }
-  else if (obj.hours >= 5 || obj.hours <= 7){
+  else if (obj.hours >= 5 || obj.hours <= 7){ // if dawn (5am to 7am) then
     dawnint = map(obj.hours, 5, 7, 0, 1);
     daynighttrans1 = lerpColor(nightColour1, dayColor1, dawnint);
     daynighttrans2 = lerpColor(nightColour2, dayColor2, duskint);
     setGradient(daynighttrans1, daynighttrans2);
   }
-  else if (obj.hours >= 17 || obj.hours <= 19){
+  else if (obj.hours >= 17 || obj.hours <= 19){ // if dusk (5pm to 7pm) then
     duskint = map(obj.hours, 17, 19, 1, 0);
     daynighttrans1 = lerpColor(nightColour1, dayColor1, dawnint);
     daynighttrans2 = lerpColor(nightColour2, dayColor2, duskint);
@@ -100,16 +100,15 @@ function draw_clock(obj) {
 
   fill(250, 208, 90);
   noStroke();
-  circle(width / 2, sunY, 500);
+  circle(width / 2, sunY, 500); // SUN
 
   fill(230, 247, 246);
   noStroke();
-  circle(width / 2, moonY, 200);
+  circle(width / 2, moonY, 200); // MOON
 
   fill(156, 255, 145);
   noStroke();
   circle(width / 2, 800, 1000); // EARTH
-
 
 }
 
