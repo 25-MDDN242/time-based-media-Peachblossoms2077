@@ -29,7 +29,7 @@ function draw_clock(obj) {
     let daynighttrans1 = lerpColor(dayColor1, nightColour1, duskint);
     let daynighttrans2 = lerpColor(dayColor2, nightColour2, duskint);
     setGradient(daynighttrans1, daynighttrans2);
-  }
+  } 
 
 // Sun and Moon movement
   // Sun and Moon movement 
@@ -68,3 +68,5 @@ function setGradient(c1, c2) { // taken from https://p5js.org/examples/color-lin
     line(0, y, width, y);
   }
 }
+
+//test
