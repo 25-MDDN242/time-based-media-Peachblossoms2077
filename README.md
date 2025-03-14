@@ -38,4 +38,11 @@ I didn't get to do much, my project is kinda heavily image-based so I just start
 I'll try to do more at home.
 
 
+In-class Commit 06/03
+
+I scratched my old system of changing the opacity for the day and night cycle and switched to a colorlerp system to change color during transitional periods of the day instead. It does (somewhat) work but since color change is now tied to obj.hours, it's choppy and not smooth. 
+
+Added Sun and Moon but their movement are also tied to obj.hours and aren't the smoothest.
+
+
 
