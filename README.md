@@ -45,4 +45,9 @@ I scratched my old system of changing the opacity for the day and night cycle an
 Added Sun and Moon but their movement are also tied to obj.hours and aren't the smoothest.
 
 
+Working Day Night System and Sun and Moon Movement Commit 14/03
+
+I fully fixed the Day Night System and added movement tied to obj.minutes along with obj.hours. This way, transitions between colors are much smoother than before. I implemented the same thing with the Sun and Moon so that their movement are purely tied to obj.hours. The moon rising at 12am and exits at 5am doesn't really make sense either so I managed to get the moon to rise at 10pm and leaves
+
+
 

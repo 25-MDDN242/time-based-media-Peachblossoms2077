@@ -32,29 +32,34 @@ function draw_clock(obj) {
   }
 
 // Sun and Moon movement
-let sunY = map(obj.hours + obj.minutes / 60 + obj.seconds / 3600, 5, 12, 700, -500, true); // Sun moves
-let moonY = 700; // Default position for the moon
-  if (obj.hours >= 22 || obj.hours < 4) {
-    moonY = map((obj.hours >= 22 ? obj.hours - 22 : obj.hours + 2) + obj.minutes / 60 + obj.seconds / 3600, 0, 6, 700, -500, true); // Moon rises at 10 PM, exits at 4 AM
+  // Sun and Moon movement 
+  let sunY = 700; // Default position for the sun
+  if (obj.hours >= 5 && obj.hours < 15) {
+    sunY = map(obj.hours + obj.minutes / 60 + obj.seconds / 3600, 5, 15, 700, -500, true); // Sun rises at 5 AM, exits at 3 PM
   }
-  // Draw sun
+
+  let moonY = 700; // Default position for the moon
+  if (obj.hours >= 21 || obj.hours < 4) {
+    moonY = map((obj.hours >= 21 ? obj.hours - 21 : obj.hours + 3) + obj.minutes / 60 + obj.seconds / 3600, 0, 7, 700, -500, true); // Moon rises at 9 PM, exits at 4 AM
+  }
+  // SUN
   fill(250, 208, 90);
   noStroke();
   circle(width / 2, sunY, 500);
 
-  // Draw moon
+  // MOON
   fill(230, 247, 246);
   noStroke();
   circle(width / 2, moonY, 200);
 
-  // Draw earth
+  // EARTH
   fill(156, 255, 145);
   noStroke();
   circle(width / 2, 800, 1000);
 }
 
 // Function to set gradient background
-function setGradient(c1, c2) {
+function setGradient(c1, c2) { // taken from https://p5js.org/examples/color-linear-gradient.html
   noFill();
   for (let y = 0; y < height; y++) {
     let inter = map(y, 0, height, 0, 1);
