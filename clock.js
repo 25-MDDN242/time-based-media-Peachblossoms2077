@@ -92,10 +92,5 @@ function setGradient(c1, c2) { // taken from https://p5js.org/examples/color-lin
     stroke(c);
     line(0, y, width, y);
   }
-<<<<<<< HEAD
-}
-=======
-}
 
-//test
->>>>>>> c72f0556a56c0b47cc136a830fce58302d65a822
+}
