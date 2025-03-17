@@ -47,7 +47,9 @@ Added Sun and Moon but their movement are also tied to obj.hours and aren't the 
 
 Working Day Night System and Sun and Moon Movement Commit 14/03
 
-I fully fixed the Day Night System and added movement tied to obj.minutes along with obj.hours. This way, transitions between colors are much smoother than before. I implemented the same thing with the Sun and Moon so that their movement are purely tied to obj.hours. The moon rising at 12am and exits at 5am doesn't really make sense either so I managed to get the moon to rise at 10pm and leaves
+I fully fixed the Day Night System and added movement tied to obj.minutes along with obj.hours. This way, transitions between colors are much smoother than before. I implemented the same thing with the Sun and Moon so that their movement aren't purely tied to obj.hours. The moon rising at 12am and exits at 5am doesn't really make sense either so I managed to get the moon to rise at 9pm and leaves at 4am.
+
+The Clock's mechanism is basically complete, excluding the assets I still need to make and import and the alarm system.
 
 
 
