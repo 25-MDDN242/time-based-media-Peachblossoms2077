@@ -1,6 +1,13 @@
 /*
  * use p5.js to draw a clock on a 960x500 canvas
  */
+
+let alarmSound;
+
+function preload() {
+  alarmSound = loadSound('alarm.mp3'); // Load the alarm sound
+}
+
 function draw_clock(obj) {
   // Day and night gradient colors
   let nightColour1 = color(2, 16, 33); // Dark blue
@@ -26,7 +33,7 @@ function draw_clock(obj) {
     let daynighttrans1 = lerpColor(dayColor1, nightColour1, duskint);
     let daynighttrans2 = lerpColor(dayColor2, nightColour2, duskint);
     setGradient(daynighttrans1, daynighttrans2);
-  } 
+  }
 
   // Sun and Moon movement 
   let sunY = 700; // Default position for the sun
@@ -63,24 +70,37 @@ function draw_clock(obj) {
   let ringColor = color(255, 255, 255, 0); // Default ring color
   let strokeThickness = 10; // Blue ring thickness
 
-  if (obj.seconds_until_alarm > 0) { // Helped written by Dave from p5.js discord server.
-    let pulseFactor = obj.seconds_until_alarm % 1; //PulseFactor % 1 will give a value between 0 and 1 to reset the pulse's position and opacity
-    let pulseSize = map(pulseFactor, 0, 1, 0, 30);
-    let pulseOpacity = map(pulseFactor, 0, 1, 80, 150);
-    ringSize = baseRingSize + pulseSize;
-    ringColor = color(100, 100, 255, pulseOpacity);
-  } else if (obj.seconds_until_alarm === 0) {
-    let pulse = map(sin(frameCount * 0.1), -1, 1, 10, 50);
-    ringSize = baseRingSize + pulse;
-    ringColor = color(255, 0, 0, map(pulse, 10, 50, 150, 255));
-    strokeThickness = 20; // Red ring thickness
+  if (obj.seconds_until_alarm > 0) {
+    progress = map(obj.seconds_until_alarm, 30, 0, 0, TWO_PI, true); // Map remaining time to full circle
+    stroke(255, 255, 255, 200);
+    strokeWeight(strokeThickness);
+    noFill();
+    arc(earthX, earthY, baseRingSize, baseRingSize, -HALF_PI, -HALF_PI + progress); // Draw loading arc
+  } else if (obj.seconds_until_alarm === 0) { // modified by CHATGPT
+    let pulse = map(sin(frameCount * 0.03), -1, 1, 10, 50); 
+    let ringSize = baseRingSize + pulse;
+    stroke(255, 0, 0, map(pulse, 10, 50, 10, 120));
+    strokeWeight(1000);
+    noFill();
+    ellipse(earthX, earthY, ringSize, ringSize);
+
+    // Play alarm sound if it's not already playing
+    if (!alarmSound.isPlaying()) {
+      alarmSound.play();
+    }
+  } else {
+    // Stop alarm when it's not active
+    if (alarmSound.isPlaying()) {
+      alarmSound.stop();
+    }
   }
 
   strokeWeight(1);
-  noFill();
+  noFill(); 
   stroke(ringColor);
   strokeWeight(strokeThickness);
   ellipse(earthX, earthY, ringSize, ringSize);
+
 }
 
 // Function to set gradient background
