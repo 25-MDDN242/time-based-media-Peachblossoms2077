@@ -3,9 +3,36 @@
  */
 
 let alarmSound;
+let stars = [];
+let staramount = 50;
+let lastSecond = -1;
 
-function preload() {
-  alarmSound = loadSound('alarm.mp3'); // Load the alarm sound
+function preload() { // load images and sounds
+  alarmSound = loadSound('alarm.mp3'); 
+  earthImg = loadImage('EarthVector.png'); 
+  cloudImg = loadImage('CloudVector.png'); 
+  sunImg = loadImage('SunVector.png'); 
+  moonImg = loadImage('MoonVector.png'); 
+  cometImg = loadImage('CometVector.png'); 
+}
+
+//Star system - modified by CHATGPT
+function setupStars() { // initialize an empty array to store stars
+  stars = [];
+}
+
+function drawStars(alpha) { // Draw and fade out stars
+  noStroke();
+  for (let i = stars.length - 1; i >= 0; i--) {
+    let star = stars[i];
+    star.opacity -= star.fadeSpeed;
+    fill(255, 255, 255, star.opacity * alpha);
+    ellipse(star.x, star.y, 2);
+
+    if (star.opacity <= 0) { // Remove stars that have faded out
+      stars.splice(i, 1);
+    }
+  }
 }
 
 function draw_clock(obj) {
@@ -17,23 +44,43 @@ function draw_clock(obj) {
   let dayColor2 = color(220, 246, 252); // Brighter sky blue
 
   let dawnint, duskint;
+  let starAlpha = 0;
 
   // Day-Night transitions
   if (obj.hours >= 7 && obj.hours < 17) { // Daytime (7 AM - 5 PM)
     setGradient(dayColor1, dayColor2);
+    starAlpha = 0;
   } else if (obj.hours >= 19 || obj.hours < 5) { // Nighttime (7 PM - 5 AM)
     setGradient(nightColour1, nightColour2);
+    starAlpha = 1;
   } else if (obj.hours >= 5 && obj.hours < 7) { // Dawn (5 AM - 7 AM)
     dawnint = map(obj.hours + obj.minutes / 60, 5, 7, 0, 1, true);
     let daynighttrans1 = lerpColor(nightColour1, dayColor1, dawnint);
     let daynighttrans2 = lerpColor(nightColour2, dayColor2, dawnint);
     setGradient(daynighttrans1, daynighttrans2);
+    starAlpha = 1 - dawnint;
   } else if (obj.hours >= 17 && obj.hours < 19) { // Dusk (5 PM - 7 PM)
     duskint = map(obj.hours + obj.minutes / 60, 17, 19, 0, 1, true);
     let daynighttrans1 = lerpColor(dayColor1, nightColour1, duskint);
     let daynighttrans2 = lerpColor(dayColor2, nightColour2, duskint);
     setGradient(daynighttrans1, daynighttrans2);
+    starAlpha = duskint;
   }
+
+  // Add "staramount" amount of stars every second at night
+  if (obj.seconds !== lastSecond && starAlpha > 0.5) {
+    for (let i = 0; i < staramount; i++) {
+      stars.push({
+        x: random(width), // Randomize vertical and horizontal position for every star
+        y: random(height), 
+        opacity: 255, // Full opacity initially when stars are created
+        fadeSpeed: random(1, 3) // Random fading speed
+      });
+    }
+    lastSecond = obj.seconds;
+  }
+
+  drawStars(starAlpha); // Draw stars
 
   // Sun and Moon movement 
   let sunY = 700; // Default position for the sun
@@ -46,38 +93,38 @@ function draw_clock(obj) {
     moonY = map((obj.hours >= 21 ? obj.hours - 21 : obj.hours + 3) + obj.minutes / 60 + obj.seconds / 3600, 0, 7, 700, -500, true); // Moon rises at 9 PM, exits at 4 AM
   }
 
-  // SUN
-  fill(250, 208, 90);
-  noStroke();
-  circle(width / 2, sunY, 500);
+  // Draw Sun image
+  imageMode(CENTER);
+  image(sunImg, width / 2, sunY, 1440, 750);
 
-  // MOON
-  fill(230, 247, 246);
-  noStroke();
-  circle(width / 2, moonY, 200);
+  // Draw Moon image
+  imageMode(CENTER);
+  image(moonImg, width / 2, moonY, 960, 500);
 
-  // EARTH
-  fill(156, 255, 145);
-  noStroke();
-  circle(width / 2, 800, 1000);
+  // Draw Earth image
+  imageMode(CENTER);
+  image(earthImg, width / 2, 250, 960, 500);
 
+  // Draw Cloud image
+  imageMode(CENTER);
+  image(cloudImg, width / 2, 250, 960, 500);
 
-  // Alarm System - Pulse ring around the earth
+  // Alarm System 
   let earthX = width / 2;
   let earthY = 800;
   let baseRingSize = 1020; // Base ring size for both rings
   let ringSize = baseRingSize;
   let ringColor = color(255, 255, 255, 0); // Default ring color
-  let strokeThickness = 10; // Blue ring thickness
+  let strokeThickness = 10; // ring thickness
 
-  if (obj.seconds_until_alarm > 0) {
+  if (obj.seconds_until_alarm > 0) { // Helped written by Dave from p5.js discord server.
     progress = map(obj.seconds_until_alarm, 30, 0, 0, TWO_PI, true); // Map remaining time to full circle
     stroke(255, 255, 255, 200);
     strokeWeight(strokeThickness);
     noFill();
-    arc(earthX, earthY, baseRingSize, baseRingSize, -HALF_PI, -HALF_PI + progress); // Draw loading arc
-  } else if (obj.seconds_until_alarm === 0) { // modified by CHATGPT
-    let pulse = map(sin(frameCount * 0.03), -1, 1, 10, 50); 
+    arc(earthX, earthY, baseRingSize, baseRingSize, -HALF_PI, -HALF_PI + progress); // Draw loading arc, modified by CHATGPT
+  } else if (obj.seconds_until_alarm === 0) {
+    let pulse = map(sin(frameCount * 0.03), -1, 1, 10, 50);
     let ringSize = baseRingSize + pulse;
     stroke(255, 0, 0, map(pulse, 10, 50, 10, 120));
     strokeWeight(1000);
@@ -94,13 +141,18 @@ function draw_clock(obj) {
       alarmSound.stop();
     }
   }
+  // Comet animation - modified by CHATGPT
+  if (obj.seconds < 1) {
+    let cometProgress = map(obj.seconds + obj.millis / 1000, 0, 1, width + 100, -100);
+    image(cometImg, cometProgress, height / 4, 1000, 400);
+  }
 
   strokeWeight(1);
-  noFill(); 
+  noFill();
   stroke(ringColor);
   strokeWeight(strokeThickness);
   ellipse(earthX, earthY, ringSize, ringSize);
-
+  
 }
 
 // Function to set gradient background

@@ -51,9 +51,11 @@ I fully fixed the Day Night System and added movement tied to obj.minutes along 
 
 The Clock's mechanism is basically complete, excluding the assets I still need to make and import and the alarm system.
 
+
 UPDATE README, LAZY AHH
 
-In Class Commit 20/03 
+
+In Class Commit 20/03 (kinda working alarm)
 
 
 
