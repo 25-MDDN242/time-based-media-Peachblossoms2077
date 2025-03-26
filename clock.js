@@ -13,7 +13,8 @@ function preload() { // load images and sounds
   cloudImg = loadImage('CloudVector.png'); 
   sunImg = loadImage('SunVector.png'); 
   moonImg = loadImage('MoonVector.png'); 
-  cometImg = loadImage('CometVector.png'); 
+  cometImg = loadImage('CometVector.png');
+  satelliteImg = loadImage('SatelliteVector.png');
 }
 
 //Star system - modified by CHATGPT
@@ -67,7 +68,7 @@ function draw_clock(obj) {
     starAlpha = duskint;
   }
 
-  // Add "staramount" amount of stars every second at night
+  // Add "staramount" amount of stars every second
   if (obj.seconds !== lastSecond && starAlpha > 0.5) {
     for (let i = 0; i < staramount; i++) {
       stars.push({
@@ -101,13 +102,27 @@ function draw_clock(obj) {
   imageMode(CENTER);
   image(moonImg, width / 2, moonY, 960, 500);
 
-  // Draw Earth image
+  // Draw Earth image!
   imageMode(CENTER);
   image(earthImg, width / 2, 250, 960, 500);
 
   // Draw Cloud image
   imageMode(CENTER);
   image(cloudImg, width / 2, 250, 960, 500);
+
+
+  // Satellite Orbiting Earth
+  let satelliteAngle = radians((obj.seconds + obj.millis / 1000) * 6); // full rotation every minute
+  let satelliteX = width / 2 + 250 * cos(satelliteAngle);
+  let satelliteY = 400 + 150 * sin(satelliteAngle);
+
+  imageMode(CENTER);
+  image(satelliteImg, satelliteX, satelliteY, 96, 50);
+
+  if (obj.seconds % 2 === 0) { // Blinking blue light every second
+    fill(255, 0, 0);
+    ellipse(satelliteX + 4, satelliteY - 4, 4);
+  }
 
   // Alarm System 
   let earthX = width / 2;
