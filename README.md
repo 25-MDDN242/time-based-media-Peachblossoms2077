@@ -54,6 +54,12 @@ After some feedback with Phoebe, I was faced with a hard decision of either keep
 
 PS. Please take the time to cycle through your PC's system time to see how it looks during the day and night. Thank you!
 
+### Final Final(After hand-in) Clock Commit (27/03)
+
+I am fine with this not being graded, but I'm just pissed off at all the negative space in the sky of the clock during day time, I added some simple sprites for floating clouds and made them oscillate left and right to make the clock less. Damn. Boring. Screw realism, screw the fact that I have already added clouds to the Earth and these "floating clouds" (dumb name, all clouds float) are redundant. Screw the fact that this part of the README will probably never be read and this part of the project will never be graded. I AM DONE! Finally the sky will have some thing to look at instead of NOTHINGGGG! 
+
+Oh yeah and I fixed some formatting issues too.
+
 ### Inspirations
 At the ideation stage, the angle and basic idea for the clock came from the Iphone default wallpaper as well as many different clock system in video games. 
 
